@@ -1,38 +1,720 @@
-.App {
+/*Mobile*/
+
+html {
+  text-align: center;
+  margin: 0;
+  background-color: #3e3e3e;
+  height: 100%;
+}
+
+.title{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.map_icon{
+  color: #239D6A;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.title_text{
+  color: #efefef;
+  font-size: 40px;
+}
+
+.map{
+  width: 95%;
+  height: 90%;
+  border-radius: 10px;
+}
+
+/*Helper*/
+
+.helper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(217, 217, 217, 0.2);
+  margin-bottom: 30px;
+}
+
+.helper_container{
+  padding: 10px;
+}
+
+.circles_container {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+}
+
+.round_circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgba(217, 217, 217, 0.2);
+  border: 1px solid rgba(217, 217, 217, 0.2);
+}
+
+.round_circle.correct {
+  background-color: #239D6A;
+}
+
+.round_circle.skipped {
+  background-color: #9D2339;
+}
+
+
+.helper_title{
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0px 5px;
+}
+
+.helper_text{
+  color: white;
+  font-size: 16px;
+  margin: 5px 0px 20px;
+}
+
+.round_title{
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 10px 0px 5px;
+}
+
+.round{
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0px 20px;
+}
+
+
+/* Clues */
+.clue-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+}
+
+.clue-item {
+  width: 80%;
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 10px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: rgba(217, 217, 217, 0.3);
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.hidden-clue {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.clue_flag {
+  width: 50%;
+  height: 50%;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.2s;
+}
+
+.clue-icon {
+  margin-left: 10px;
+  font-size: 1.5rem;
+}
+
+
+.clue-icon {
+  margin-left: 10px;
+  font-size: 1.5rem;
+}
+
+.clue_button_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.get_clue{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5B87F9;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  width: 150px;
+  height: 30px;
+  font-size: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.glass{
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.no_clues{
+  width: 150px;
+  height: 30px;
+  border-radius: 10px;
+  color: #7B7B7B;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #1E1E1E;
+  margin: 0;
+}
+
+.clues_left{
+  color: white;
+  margin: 0;
+}
+
+/*Guess*/
+
+.input{
+  margin-top: 5px;
+  background-color: rgba(217, 217, 217, 0.2);
+  color: white;
+  font-weight: bold;
+  border: none;
+  text-align: center;
+  border-radius: 10px;
+  width: 214px;
+  height: 25px;
+}
+
+.guess_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.skip_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skip_button{
+  background-color: #9D2339;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  width: 110px;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+.skip_icon{
+  color: white;
+  margin-left: 5px;
+  align-self: center;
+}
+
+.guess_button{
+  background-color: #239D6A;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  width: 110px;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.pin{
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}
+
+.error_message{
+  color: red;
+  margin: 0;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/*Start Screen*/
+
+.start_screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.background_video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+}
+
+.content {
+  z-index: 1;
+  text-align: center;
+}
+
+.start_title {
+  color: white;
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.mapquest {
+  margin-top: 0;
+  color: #239D6A;
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.rules {
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+}
+
+
+.difficulty_buttons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.difficulty_container{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.difficulty_text{
+  color: white;
+  margin: 0;
+}
+
+.switch_diff {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch_diff input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #239D6A;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #239D6A;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.start_button {
+  border: none;
+  color: white;
+  width: 150px;
+  height: 40px;
+  background-color: #239D6A;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 50px;
+}
+
+.language-selector {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  margin: 20px;
+}
+
+/*bouton langue*/
+
+.switch {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.switch > span {
+  position: absolute;
+  top: 14px;
+  pointer-events: none;
+  font-family: 'Helvetica', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+  width: 50%;
+  text-align: center;
+}
+
+input.check-toggle-round-flat:checked ~ .off {
+  color: #239D6A;
+}
+
+input.check-toggle-round-flat:checked ~ .on {
+  color: #fff;
+}
+
+.switch > span.on {
+  left: 0;
+  padding-left: 2px;
+  color: #239D6A;
+}
+
+.switch > span.off {
+  right: 0;
+  padding-right: 4px;
+  color: #fff;
+}
+
+.check-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+
+.check-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+input.check-toggle-round-flat + label {
+  padding: 2px;
+  width: 97px;
+  height: 35px;
+  background-color: #239D6A;
+  border-radius: 60px;
+}
+
+input.check-toggle-round-flat + label:before, 
+input.check-toggle-round-flat + label:after {
+  display: block;
+  position: absolute;
+  content: "";
+}
+
+input.check-toggle-round-flat + label:before {
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  right: 2px;
+  background-color: #239D6A;
+  border-radius: 60px;
+}
+
+input.check-toggle-round-flat + label:after {
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  width: 48px;
+  background-color: #fff;
+  border-radius: 52px;
+  transition: margin 0.2s;
+}
+
+input.check-toggle-round-flat:checked + label:after {
+  margin-left: 44px;
+}
+
+/*Modale*/
+.modal_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_content {
+  width: 80%;
+  background: #5B87F9;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.modal_buttons{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.modal_button{
+  border: none;
+  background-color: #314b8b;
+  width: 120px;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.modal_header {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.modal_title{
+  margin-bottom: 5px;
+}
+
+.modal_score {
+  font-size: 24px;
+}
+
+.modal_time {
+  font-size: 24px;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+
+
+/* Desktop */
+@media (min-width: 1024px) {
+
+  .start_title {
+    color: white;
+    font-weight: bold;
+    font-size: 64px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .mapquest {
+    margin-top: 0;
+    color: #239D6A;
+    font-weight: bold;
+    font-size: 64px;
+  }
+  
+  .rules {
+    color: white;
+    font-size: 32px;
+    line-height: 100px;
+    padding: 10px;
+  }
+  
+  .start_button {
+    border: none;
+    color: white;
+    width: 250px;
+    height: 50px;
+    background-color: #239D6A;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 32px;
+    margin-top: 50px;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+  }
+
+  .start_button:hover{
+    transform: scale(1.1);
+  }
+
+  .main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 100%;
+  }
+
+  .clue_guess{
+    width: 80%;
+  }
+
+  .clue_flag{
+    width: 40%;
+    height: 30%;
+  }
+
+  .clue-item{
+    width: 90%;
+    font-size: 24px;
+    cursor: default;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .get_clue{
+    width: 200px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .no_clues{
+    width: 200px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  .clues_left{
+    margin-bottom: 20px;
+  }
+  
+  .input{
+    width: 300px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  .error_message{
+    font-size: 16px;
+  }
+
+  .skip_button{
+    margin-top: 30px;
+    width: 150px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .guess_button{
+    margin-top: 30px;
+    width: 150px;
+    height: 40px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .map{
+    width: 55%;
+    align-self: center;
+    margin-bottom: 50px;
+    margin-left: 50px;
+  }
+
+  .modal_content{
+    width: 30%;
   }
 }
