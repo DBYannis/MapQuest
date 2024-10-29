@@ -77,7 +77,7 @@ const Clues = ({ clues, onResetClues }) => {
           }
 
           return (
-            <li key={index} className="clue-item">
+            <li key={index} className={`clue-item ${revealedClues[index] ? "revealed" : ""}`}>
               {revealedClues[index] ? (
                 <>
                   <FontAwesomeIcon icon={faLockOpen} className="clue-icon" />

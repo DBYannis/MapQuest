@@ -29,6 +29,7 @@ function App() {
   const [selectedDifficulty, setSelectedDifficulty] = useState(['easy', 'medium', 'hard']);
   const timerRef = useRef(null);
 
+  
   const fetchMapImage = useCallback(async () => {
     try {
       const citiesCollection = collection(db, 'cities');
