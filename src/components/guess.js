@@ -3,11 +3,50 @@ import pin from '../images/pin.png';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faForwardStep } from '@fortawesome/free-solid-svg-icons';
+import ModalSkip from './modalSkip';
 
 const Guess = ({ correctCity, onCorrectGuess, onSkipCity }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [userGuess, setUserGuess] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [skippedCity, setSkippedCity] = useState('');
+
+  const cityTranslations = {
+    "London": "Londres",
+    "Londres": "London",
+    "Cairo": "Le Caire",
+    "Le Caire": "Cairo",
+    "Cape Town": "Le Cap",
+    "Le Cap": "Cape Town",
+    "Algiers": "Alger",
+    "Alger": "Algiers",
+    "Moscow": "Moscou",
+    "Moscou": "Moscow",
+    "Seoul": "Séoul",
+    "Séoul": "Seoul",
+    "Marrakesh": "Marrakech",
+    "Marrakech": "Marrakesh",
+    "Lisbon": "Lisbonne",
+    "Lisbonne": "Lisbon",
+    "Singapore": "Singapour",
+    "Singapour": "Singapore",
+    "Brussels": "Bruxelles",
+    "Bruxelles": "Brussels",
+    "Edinburgh": "Édimbourg",
+    "Édimbourg": "Edinburgh",
+    "Geneva": "Genève",
+    "Genève": "Geneva",
+    "Barcelona": "Barcelone",
+    "Barcelone": "Barcelona",
+    "Copenhagen": "Copenhague",
+    "Copenhague": "Copenhagen"
+  };
+
+  const getAllPossibleNames = (city) => {
+    const translatedCity = cityTranslations[city];
+    return translatedCity ? [city, translatedCity] : [city];
+  };
 
   const formatCityName = (city) => {
     return city
@@ -17,14 +56,10 @@ const Guess = ({ correctCity, onCorrectGuess, onSkipCity }) => {
       .toLowerCase();
   };
 
-  const getTranslatedCity = (city) => {
-    return t(`cities.${city}`, city);
-  };
-
   const handleGuess = () => {
-    const translatedCity = getTranslatedCity(correctCity);
-
-    if (formatCityName(userGuess) === formatCityName(translatedCity)) {
+    const possibleNames = getAllPossibleNames(correctCity);
+    
+    if (possibleNames.some(name => formatCityName(userGuess) === formatCityName(name))) {
       setErrorMessage('');
       onCorrectGuess();
       setUserGuess('');
@@ -44,8 +79,17 @@ const Guess = ({ correctCity, onCorrectGuess, onSkipCity }) => {
   };
 
   const handleSkipCity = () => {
+    const translatedCity = i18n.language === 'fr' ? cityTranslations[correctCity] || correctCity : correctCity;
+
+    setSkippedCity(translatedCity);
+    setModalOpen(true);
     onSkipCity();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setUserGuess('');
   };
   
   return (
@@ -72,9 +116,13 @@ const Guess = ({ correctCity, onCorrectGuess, onSkipCity }) => {
           </button>
         </div>
       </div>
+      <ModalSkip 
+        isOpen={isModalOpen} 
+        onClose={closeModal} 
+        city={skippedCity}
+      />
     </div>
   );
 };
 
 export default Guess;
-
